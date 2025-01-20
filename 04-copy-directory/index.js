@@ -21,4 +21,11 @@ const copy_directory = async (source, destination) => {
   }
 };
 
-copy_directory(source_dir, destination_dir);
+(async () => {
+  await fs.rm(destination_dir, {
+    recursive: true,
+    force: true,
+  });
+
+  copy_directory(source_dir, destination_dir);
+})();
