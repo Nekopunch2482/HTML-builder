@@ -11,10 +11,10 @@ const list_files = async () => {
   for (const file of file_list) {
     const stats = await fs.stat(path.join(file.path, file.name));
 
-    const [file_name, file_extension] = file.name.split('.');
+    const { name, ext } = path.parse(file.name);
     const file_size = Math.round(stats.size / 1024) + 'kb';
 
-    console.log(`${file_name} - ${file_extension || ''} - ${file_size}`);
+    console.log(`${name} - ${ext.slice(1)} - ${file_size}`);
   }
 };
 
